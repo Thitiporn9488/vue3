@@ -1,15 +1,14 @@
 <template>
   <div>
     <h1>Login</h1>
-
     <div class="flex">
       <div class="flex-col">
-        <label for="fname">username:</label>
-        <input type="text" @keypress="handleUsername" />
+        <label for="username">username:</label>
+        <input type="text" @keyup="handleUsername" />
       </div>
       <div class="flex-col">
-        <label for="fname">password:</label>
-        <input type="text" @keypress="handlePassword" />
+        <label for="password">password:</label>
+        <input type="text" @keyup="handlePassword" />
       </div>
       <div class="flex-col">
         <button class="button" @click="login()">Login</button>
@@ -28,7 +27,7 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.username, '/', this.password)
+      this.$emit('login', { username: this.username, password: this.password })
     },
     handlePassword(e) {
       this.password = e.target.value
@@ -48,8 +47,14 @@ export default {
 .flex-col {
   width: 100%;
   margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 .button {
   width: 100px;
+}
+h1 {
+  text-align: center;
 }
 </style>
